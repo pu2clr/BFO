@@ -17,6 +17,9 @@ The user can control the BFO  by using tow buttons and an encoder.
 	reference.
 
 
+## Schematic
+
+ <img src="https://github.com/pu2clr/BFO/blob/master/schematic/bfo_schematic.png" alt="BFO schematic">
 
 
 

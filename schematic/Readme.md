@@ -4,7 +4,7 @@ This schematic was made by using the [Fritzing Software](http://fritzing.org/hom
 
 ## Schematic
 
- <img src="https://github.com/pu2clr/BFO/blob/master/schematic/bfo_schematic.png" alt="VFO and BFO schematic">
+ <img src="https://github.com/pu2clr/BFO/blob/master/schematic/bfo_schematic.png" alt="BFO schematic">
 
 ### Si5351A
 
