@@ -38,6 +38,8 @@ The user can control the BFO  by using tow buttons and an encoder.
 
 ## Schematic
 
+The schematic was built by using [Fritzing](http://fritzing.org/home/) Software, an initiative open-source software tools to design circuits. See folder [schematic](https://github.com/pu2clr/BFO/tree/master/schematic).
+
  <img src="https://github.com/pu2clr/BFO/blob/master/schematic/bfo_schematic.png" alt="BFO schematic">
 
 
@@ -90,7 +92,9 @@ attachInterrupt(digitalPinToInterrupt(BUTTON_ON_OFF), bfoOnOff, RISING); // when
 
 # References
 
-[Arduino](https://www.arduino.cc)
-[Arduino Micro Pinout](http://pinoutguide.com/Electronics/arduino_micro_pinout.shtml)
-[Text only Arduino Library for SSD1306 OLED displays](https://github.com/greiman/SSD1306Ascii)
-[Si5351 Library for Arduino](https://github.com/etherkit/Si5351Arduino)
+- [Arduino](https://www.arduino.cc)
+- [Arduino Micro Pinout](http://pinoutguide.com/Electronics/arduino_micro_pinout.shtml)
+- [Arduino Interrupts](https://www.arduino.cc/reference/en/language/functions/interrupts/interrupts/)
+- [Text only Arduino Library for SSD1306 OLED displays](https://github.com/greiman/SSD1306Ascii)
+- [Si5351 Library for Arduino](https://github.com/etherkit/Si5351Arduino)
+- [Fritzing](http://fritzing.org/home/)
