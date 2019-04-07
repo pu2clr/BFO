@@ -3,8 +3,9 @@
 ## Table contents
 
 1. [Introduction](https://github.com/pu2clr/BFO#introduction)
+1. [Components]()
 1. [Schematic](https://github.com/pu2clr/BFO#this-bfo-interface)
-1. [This BFO interface](https://github.com/pu2clr/BFO#this-bfo-interface)
+1. [BFO interface](https://github.com/pu2clr/BFO#bfo-interface)
 1. [Arduino pins and  Encoder, Step, Reset BFO and Turt On or Off commands](https://github.com/pu2clr/BFO#arduino-pins-and--encoder-step-reset-bfo-and-turt-on-or-off-commands)
 
 
@@ -16,13 +17,24 @@ The Si5351 is an I2C configurable clock generator that is very appropriate for r
 See also the similar project ["VFO and BFO with Si5351 and OLED,  controlled by Arduino (Micro)"](https://github.com/pu2clr/VFO_BFO_OLED_ARDUINO) 
 
 
-## This BFO interface
+## Components
+
+- AZDelivery 1 x OLED Display Arduino 128 x 64 Pixels White 0.96 Inch I2C IIC Module for Arduino. This project uses the [Text only Arduino Library for SSD1306 OLED displays](https://github.com/greiman/SSD1306Ascii) Arduino library.
+- Adafruit Si5351A Clock Generator Breakout Board - 8KHz to 160MHz. This project uses the [Si5351 Library for Arduino](https://github.com/etherkit/Si5351Arduino).
+- One regular encoder.
+- Three regular Push Button.
+- Two 10nF ceramic capacitor
+- Six 10K resistor
+- One 1K resistor  
+- Arduino Micro (Atmega32u4)
+
+## BFO interface
 
 The user can control the BFO  by using tow buttons and an encoder. 
 
 - The button __Step__ changes the increment and decrement step. It can 10Hz, 50Hz or 100Hz;
 - The button __Reset VFO__ makes the BFO to oscilateswitches on central frequency;
-- The __Turn On or Off the BFO__ if it pressed, alternates On and off. BFO off means no signal   
+- The __Turn On or Off the BFO__. If it is pressed, alternates On and off. BFO off means no output signal   
 
 ## Schematic
 
@@ -69,10 +81,12 @@ if you want to modify the frequency of BFO to 10MHz (for example), just change t
 The buttons were implemented by using Arduino interrupts resource. The code bellow shows it. 
 
 ```cpp
- // Will stop what Arduino is doing call the function associated to the button
-  attachInterrupt(digitalPinToInterrupt(BUTTON_STEP), changeStep, RISING); // whenever the BUTTON_STEP is pressed call changeStep
-  attachInterrupt(digitalPinToInterrupt(BUTTON_RST), resetBfo, RISING);    // whenever the BUTTON_RST is pressed  call resetBfo
-  attachInterrupt(digitalPinToInterrupt(BUTTON_ON_OFF), bfoOnOff, RISING); // whenever the BUTTON_ON_OFF is pressed  call bfoOnOff
+// Will stop what Arduino is doing call the function associated to the button
+attachInterrupt(digitalPinToInterrupt(BUTTON_STEP), changeStep, RISING); // whenever the BUTTON_STEP is pressed call changeStep
+attachInterrupt(digitalPinToInterrupt(BUTTON_RST), resetBfo, RISING);    // whenever the BUTTON_RST is pressed  call resetBfo
+attachInterrupt(digitalPinToInterrupt(BUTTON_ON_OFF), bfoOnOff, RISING); // whenever the BUTTON_ON_OFF is pressed  call bfoOnOff
 ```
 
+
+# References
 
