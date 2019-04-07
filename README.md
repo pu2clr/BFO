@@ -110,7 +110,7 @@ attachInterrupt(digitalPinToInterrupt(BUTTON_ON_OFF), bfoOnOff, RISING); // when
 
 ## SI5351 Calibration
 
-You might need calibrate your si5351 to get more precision during signal generation. To do that you can use the si5351_calibration.ino sketch that comes with [si5351 Library for Arduino](https://github.com/etherkit/Si5351Arduino). Click [here](https://github.com/etherkit/Si5351Arduino#calibration) to see more about si5351 calibration. You can also try watch [this Portuguese video] (https://youtu.be/BJ83uvDcfIo) that show how to calibrate the si5351. Another video about si5351 calibration can be watch [here (Homebrew 80/40m SSB/CW Rig - #7a Si5351 Calibration)](https://youtu.be/fJ_3z2IAjKg).
+You might need calibrate your si5351 to get more precision during signal generation. To do that you can use the si5351_calibration.ino sketch that comes with [the Si5351 library for Arduino](https://github.com/etherkit/Si5351Arduino). Click [here](https://github.com/etherkit/Si5351Arduino#calibration) to see more about si5351 calibration. You can also try watch [this Portuguese video] (https://youtu.be/BJ83uvDcfIo) that show how to calibrate the si5351. Another video about si5351 calibration can be watch [here (Homebrew 80/40m SSB/CW Rig - #7a Si5351 Calibration)](https://youtu.be/fJ_3z2IAjKg).
 
 The line code bellow shows the correction factor found during this project. 
 
