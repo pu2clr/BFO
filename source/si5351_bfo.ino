@@ -29,7 +29,7 @@
 #define BUTTON_RST 1    // Set the frequency to central position
 #define BUTTON_ON_OFF 7 // Turn BFO ON or OFF
 
-// BFO range for this project is 400KHz to 500KHz. The central frequency is 455KHz.
+// BFO range for this project is 452KHz to 458KHz. The central frequency is 455KHz.
 #define MAX_BFO 45800000LU    // BFO max. frequency
 #define CENTER_BFO 45500000LU // BFO center frequency
 #define MIN_BFO 45200000LU    // BFO min. frequency
