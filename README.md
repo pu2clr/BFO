@@ -51,9 +51,9 @@ The Redsun RP-2100 is a multi-band commercial radio. It has no SSB internal supp
 
 The user can control the BFO  by using tow buttons and an encoder. 
 
-- The button __Step__ changes the increment and decrement step. It can 10Hz, 50Hz or 100Hz;
-- The button __Reset VFO__ makes the BFO to oscilateswitches on central frequency;
-- The __Turn On or Off the BFO__. If it is pressed, alternates On and off. BFO off means no output signal   
+- The __Step button__ changes the increment and decrement step. It can be 10Hz, 50Hz or 100Hz. The BFO can oscilate from 452KHz to 458KHz. You can change this range and frequency if necessary. 
+- The __Reset VFO button__ sets the  BFO to central frequency (455KHz);
+- The __Turn On/Off BFO button__  turns on or off the BFO. If it is pressed, alternates On and off. BFO off means no output signal.   
 
 ## Schematic
 
