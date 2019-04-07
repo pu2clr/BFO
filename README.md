@@ -57,7 +57,7 @@ The user can control the BFO  by using tow buttons and an encoder.
 
 ## Schematic
 
-The schematic was built by using [Fritzing](http://fritzing.org/home/) Software, an initiative open-source software tools to design circuits. See folder [schematic](https://github.com/pu2clr/BFO/tree/master/schematic).
+The schematic was built by using [Fritzing](http://fritzing.org/home/) Software, an open-source software tools to design circuits. See folder [schematic](https://github.com/pu2clr/BFO/tree/master/schematic).
 
  <img src="https://github.com/pu2clr/BFO/blob/master/schematic/bfo_schematic.png" alt="BFO schematic">
 
