@@ -26,7 +26,7 @@ See also the similar project ["VFO and BFO with Si5351 and OLED,  controlled by 
 - Two 10nF ceramic capacitor
 - Six 10K resistor
 - One 1K resistor  
-- Arduino Micro (Atmega32u4)
+- Arduino Micro ([Atmega32u4](https://www.microchip.com/wwwproducts/en/ATmega32u4))
 
 ## BFO interface
 
@@ -94,6 +94,7 @@ attachInterrupt(digitalPinToInterrupt(BUTTON_ON_OFF), bfoOnOff, RISING); // when
 
 - [Arduino](https://www.arduino.cc)
 - [Arduino Micro Pinout](http://pinoutguide.com/Electronics/arduino_micro_pinout.shtml)
+- [Atmega32u4](https://www.microchip.com/wwwproducts/en/ATmega32u4)
 - [Arduino Interrupts](https://www.arduino.cc/reference/en/language/functions/interrupts/interrupts/)
 - [Text only Arduino Library for SSD1306 OLED displays](https://github.com/greiman/SSD1306Ascii)
 - [Si5351 Library for Arduino](https://github.com/etherkit/Si5351Arduino)
