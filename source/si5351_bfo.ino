@@ -25,13 +25,14 @@
 // Change this value below  (CORRECTION_FACTOR) to 0 if you do not know the correction factor of your Si5351A.
 #define CORRECTION_FACTOR 80000 // See how to calibrate your Si5351A (0 if you do not want).
 
-#define BUTTON_STEP 0    // Control the frequency increment and decrement
-#define BUTTON_RST  1    // Set the frequency to central position
+#define BUTTON_STEP 0   // Control the frequency increment and decrement
+#define BUTTON_RST 1    // Set the frequency to central position
+#define BUTTON_ON_OFF 7 // Turn BFO ON or OFF
 
-// BFO range for this project is 400KHz to 500KHz. The central frequency is 455KHz. 
-#define MAX_BFO     50000000LU    // BFO max. frequency
-#define CENTER_BFO  45500000LU    // BFO center frequency
-#define MIN_BFO     40000000LU    // BFO min. frequency
+// BFO range for this project is 400KHz to 500KHz. The central frequency is 455KHz.
+#define MAX_BFO 45800000LU    // BFO max. frequency
+#define CENTER_BFO 45500000LU // BFO center frequency
+#define MIN_BFO 45200000LU    // BFO min. frequency
 
 #define STATUS_LED 10 // Arduino status LED Pin 10
 #define STATUSLED(ON_OFF) digitalWrite(STATUS_LED, ON_OFF)
@@ -46,26 +47,27 @@ Si5351 si5351;
 // Struct for step database
 typedef struct
 {
-  char *name; // step label: 50Hz, 100Hz, 500Hz, 1KHz, 5KHz, 10KHz and 500KHz
+  char *name; // step label: 50Hz, 10Hz, 500Hz and 100KHz
   long value; // Frequency value (unit 0.01Hz See documentation) to increment or decrement
 } Step;
 
-
 // Steps database. You can change the Steps and numbers of steps here if you need.
 Step step[] = {
-    {"10Hz  ", 1000},    // Minimum Frequency step (incremente or decrement) 1KHz
-    {"100Hz ", 10000},
-    {"1KHz  ", 100000}}; // Maximum frequency step 1KHz
-// Calculate the index of last position of step[] array 
+    {"10Hz  ", 1000}, // Minimum Frequency step (incremente or decrement) 10Hz
+    {"50Hz  ", 5000},
+    {"100Hz  ", 10000}}; // Maximum frequency step 100Hz
+// Calculate the index of last position of step[] array
 const int lastStepBFO = (sizeof step / sizeof(Step)) - 1;
-volatile long currentStep = 0;  
+volatile long currentStep = 0;
 
 volatile boolean isFreqChanged = false;
 volatile boolean clearDisplay = false;
 
-// AM is the default band
-volatile uint64_t bfoFreq = CENTER_BFO;                // 455 KHz for this project
-// VFO is the Si5351A CLK0 
+volatile uint64_t bfoFreq    = CENTER_BFO; // 455 KHz for this project
+volatile uint64_t bfoLastValue;            // will save the bfoFreq before turn BFO off
+
+volatile uint8_t bfoOn = 1; // If 1 then BFO is enable, 0 disable
+volatile boolean isBfoOnOff = false;
 
 long volatile elapsedTimeInterrupt = millis(); // will control the minimum time to process an interrupt action
 long elapsedTimeEncoder = millis();
@@ -105,16 +107,17 @@ void setup()
   // Adjusting the frequency (see how to calibrate the Si5351 - example si5351_calibration.ino)
   si5351.set_correction(CORRECTION_FACTOR, SI5351_PLL_INPUT_XO);
   si5351.set_pll(SI5351_PLL_FIXED, SI5351_PLLA);
-  si5351.set_freq(bfoFreq, SI5351_CLK0);          // Start CLK0 (VFO)
+  si5351.set_freq(bfoFreq, SI5351_CLK0); // Start CLK0 (VFO)
   si5351.update_status();
   // Show the initial system information
   delay(500);
 
-  // Will stop what Arduino is doing and call changeStep()
-  attachInterrupt(digitalPinToInterrupt(BUTTON_STEP), changeStep, RISING);      // whenever the BUTTON_STEP goes from LOW to HIGH
-  attachInterrupt(digitalPinToInterrupt(BUTTON_RST),  resetBfo, RISING);      // whenever the BUTTON_STEP goes from LOW to HIGH
+  // Will stop what Arduino is doing call the function associated to the button
+  attachInterrupt(digitalPinToInterrupt(BUTTON_STEP), changeStep, RISING); // whenever the BUTTON_STEP is pressed call changeStep
+  attachInterrupt(digitalPinToInterrupt(BUTTON_RST), resetBfo, RISING);    // whenever the BUTTON_RST is pressed  call resetBfo
+  attachInterrupt(digitalPinToInterrupt(BUTTON_ON_OFF), bfoOnOff, RISING); // whenever the BUTTON_ON_OFF is pressed  call bfoOnOff
 
-  delay(500);
+  delay(1000);
 }
 
 // Blink the STATUS LED
@@ -145,19 +148,23 @@ void displayDial()
 
   display.print("\n\nStep: ");
   display.print(step[currentStep].name);
+
+  display.set1X();
+  display.print("\n\nBFO is ");
+  display.print((bfoOn) ? "On" : "Off");
 }
 
 // Change the frequency (increment or decrement)
 // direction parameter is 1 (clockwise) or -1 (counter-clockwise)
 void changeFreq(int direction)
 {
-     bfoFreq += step[currentStep].value * direction; // currentStep * direction;
-    // Check the BFO limits
-    if (bfoFreq > MAX_BFO || bfoFreq < MIN_BFO) // BFO goes to center if it is out of the limits
-    {
-      bfoFreq = CENTER_BFO; // Go to center
-      blinkLed(STATUS_LED, 50); // Alert the user that the range is over
-    }
+  bfoFreq += step[currentStep].value * direction; // currentStep * direction;
+  // Check the BFO limits
+  if (bfoFreq > MAX_BFO || bfoFreq < MIN_BFO) // BFO goes to center if it is out of the limits
+  {
+    bfoFreq = CENTER_BFO;     // Go to center
+    blinkLed(STATUS_LED, 50); // Alert the user that the range is over
+  }
   isFreqChanged = true;
 }
 
@@ -165,8 +172,8 @@ void changeFreq(int direction)
 void changeStep()
 {
   if ((millis() - elapsedTimeInterrupt) < MIN_ELAPSED_TIME)
-    return;                                           // nothing to do if the time less than MIN_ELAPSED_TIME milisecounds
-  noInterrupts();                                     // disable interrupts
+    return;       // nothing to do if the time less than MIN_ELAPSED_TIME milisecounds
+  noInterrupts(); // disable interrupts
   currentStep = (currentStep < lastStepBFO) ? (currentStep + 1) : 0;
   isFreqChanged = true;
   clearDisplay = true;
@@ -189,31 +196,64 @@ void resetBfo()
   interrupts(); // enable interrupts
 }
 
+void bfoOnOff()
+{
+  if ((millis() - elapsedTimeInterrupt) < MIN_ELAPSED_TIME)
+    return;       // nothing to do if the time less than MIN_ELAPSED_TIME milisecounds
+  noInterrupts(); // disable interrupts
+
+  // If BFO is On it becomes Off. If BFO is Off it becomes On
+ 
+  bfoOn = !bfoOn;
+  
+  bfoFreq = (bfoOn) ? bfoLastValue : 0;
+  isBfoOnOff = true;
+
+  isFreqChanged = true;
+  clearDisplay = true;
+
+  elapsedTimeInterrupt = millis();
+  interrupts(); // enable interrupts
+}
+
 // main loop
 void loop()
 {
-  // Enconder action can be processed after 5 milisecounds 
-  if ( (millis() - elapsedTimeEncoder) > 5) {
-    encoder_pin_a = digitalRead(ENCODER_PIN_A); 
-    encoder_pin_b = digitalRead(ENCODER_PIN_B);
-    if ((!encoder_pin_a) && (encoder_prev)) // has ENCODER_PIN_A gone from high to low?
-    { // if so,  check ENCODER_PIN_B. It is high then clockwise (1) else counter-clockwise (-1)
-      changeFreq( ((encoder_pin_b)? 1:-1) );
+  if (bfoOn) // porcess just if BFO is on
+  {
+    // Enconder action can be processed after 5 milisecounds
+    if ((millis() - elapsedTimeEncoder) > 5)
+    {
+      encoder_pin_a = digitalRead(ENCODER_PIN_A);
+      encoder_pin_b = digitalRead(ENCODER_PIN_B);
+      if ((!encoder_pin_a) && (encoder_prev)) // has ENCODER_PIN_A gone from high to low?
+      {                                       // if so,  check ENCODER_PIN_B. It is high then clockwise (1) else counter-clockwise (-1)
+        changeFreq(((encoder_pin_b) ? 1 : -1));
+      }
+      encoder_prev = encoder_pin_a;
+      elapsedTimeEncoder = millis(); // keep elapsedTimeEncoder updated
     }
-    encoder_prev = encoder_pin_a;
-    elapsedTimeEncoder = millis(); // keep elapsedTimeEncoder updated
-  }
-  // check if some action changed the frequency
-  if (isFreqChanged)
-  {
-    si5351.set_freq(bfoFreq, SI5351_CLK0);
-    isFreqChanged = false;
-    displayDial();
-  }
-  else if (clearDisplay)
-  {
-    display.clear();
-    displayDial();
-    clearDisplay = false;
+    // check if some action changed the frequency
+    if (isFreqChanged)
+    {
+      if (isBfoOnOff) // if the user turn off the BFO (by pressing the On OFF button)
+      {
+        si5351.output_enable(SI5351_CLK0, bfoOn); // Stop gereneting signal if bfoOn is 0 or start genereting if it is 1
+        isBfoOnOff = false;                       // Reset the BUTTON_ON_OFF status (not pressed)
+      }
+      else
+      {
+        bfoLastValue = bfoFreq;
+        si5351.set_freq(bfoFreq, SI5351_CLK0);
+      }
+      isFreqChanged = false;
+      displayDial();
+    }
+    else if (clearDisplay)
+    {
+      display.clear();
+      displayDial();
+      clearDisplay = false;
+    }
   }
 }
