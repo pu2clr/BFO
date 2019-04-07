@@ -3,11 +3,11 @@
 ## Table contents
 
 1. [Introduction](https://github.com/pu2clr/BFO#introduction)
-1. [Components]()
+1. [Components](https://github.com/pu2clr/BFO#components)
 1. [Schematic](https://github.com/pu2clr/BFO#this-bfo-interface)
 1. [BFO interface](https://github.com/pu2clr/BFO#bfo-interface)
 1. [Arduino pins and  Encoder, Step, Reset BFO and Turt On or Off commands](https://github.com/pu2clr/BFO#arduino-pins-and--encoder-step-reset-bfo-and-turt-on-or-off-commands)
-
+1. [References](https://github.com/pu2clr/BFO#references)
 
 
 ## Introduction
@@ -90,3 +90,7 @@ attachInterrupt(digitalPinToInterrupt(BUTTON_ON_OFF), bfoOnOff, RISING); // when
 
 # References
 
+[Arduino](https://www.arduino.cc)
+[Arduino Micro Pinout](http://pinoutguide.com/Electronics/arduino_micro_pinout.shtml)
+[Text only Arduino Library for SSD1306 OLED displays](https://github.com/greiman/SSD1306Ascii)
+[Si5351 Library for Arduino](https://github.com/etherkit/Si5351Arduino)
