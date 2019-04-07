@@ -1,6 +1,6 @@
 # Simple BFO with si5351 controlled by Arduino
 
-## Table contents
+## Table of contents
 
 1. [Introduction](https://github.com/pu2clr/BFO#introduction)
 1. [Components](https://github.com/pu2clr/BFO#components)
