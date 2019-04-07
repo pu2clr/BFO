@@ -20,12 +20,18 @@ See also the similar project ["VFO and BFO with Si5351 and OLED,  controlled by 
 
 ### Using this BFO to listening to 15 meters ham radio station on USB mode
 
+The first real test with this BFO project was made with a commercial radio that does not have SSB support. 
+
+The Redsun RP-2100 is a multi-band commercial radio. It has no SSB internal support. However, it has an IF AM output that allows the user to connect a BFO or a Down-Converter (455 KHz to 12 KHz) to provide SSB, DRM and other modes. The photos bellow show the radio and BFO setup. You can also watch the video "[BFO with SI5351 and Arduino test with REDSUN RP2100](https://youtu.be/AG9XZ8bdaNM)".
+
+#### Photo one
 ![Photo One](/images/BFO_01.png)
 
+#### Photo two
 ![Photo Two](/images/BFO_02.png)
 
+#### Photo three
 ![Photo Three](/images/BFO_03.png)
-
 
 
 
