@@ -3,9 +3,13 @@
 ## Table contents
 
 1. [Introduction]()
-1. [This BFO interface]()
+1. [Schematic](https://github.com/pu2clr/BFO#this-bfo-interface)
+1. [This BFO interface](https://github.com/pu2clr/BFO#this-bfo-interface)
 1. [Arduino pins and  Encoder, Step, Reset BFO and Turt On or Off commands]()
 1. 
+
+
+## Introduction
 
 The Si5351 is an I2C configurable clock generator that is very appropriate for receivers and transceivers projects in amateur radio applications. It is also suited for replacing crystal oscillators. It has three outputs that you can get three distinct frequencies at the same time. A great feature of the Si5351A is the possibility of using it with a microcontroller or platform like Arduino, PIC family and others. This small project is about a BFO that you can control the output of the Si5351A by using the Arduino Micro (Atmega32u4).  The BFO tested here ocilates from 4520KHz to 458KHz. However, you can change this range for other between 8Kz to 160MHz. Click [here](https://youtu.be/AG9XZ8bdaNM) to watch a video about this BFO.
 
