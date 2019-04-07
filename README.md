@@ -6,7 +6,7 @@
 1. [Components](https://github.com/pu2clr/BFO#components)
 1. [Schematic](https://github.com/pu2clr/BFO#this-bfo-interface)
 1. [BFO interface](https://github.com/pu2clr/BFO#bfo-interface)
-1. [Arduino pins and  Encoder, Step, Reset BFO and Turt On or Off commands](https://github.com/pu2clr/BFO#arduino-pins-and--encoder-step-reset-bfo-and-turt-on-or-off-commands)
+1. [Arduino pins and  Encoder, Step, Reset BFO and Turt On or Off commands](https://github.com/pu2clr/BFO#arduino-pins-and--encoder-step-reset-bfo-and-turn-on-or-off-commands)
 1. [References](https://github.com/pu2clr/BFO#references)
 
 
@@ -43,7 +43,7 @@ The schematic was built by using [Fritzing](http://fritzing.org/home/) Software,
  <img src="https://github.com/pu2clr/BFO/blob/master/schematic/bfo_schematic.png" alt="BFO schematic">
 
 
-## Arduino pins and  Encoder, Step, Reset BFO and Turt On or Off commands
+## Arduino pins and  Encoder, Step, Reset BFO and Turn On or Off commands
 
 This section show some aspect of the BFO [Arduino sketch](https://github.com/pu2clr/BFO/blob/master/source/si5351_bfo.ino) implementation. 
 

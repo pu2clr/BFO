@@ -37,6 +37,7 @@
 #define STATUS_LED 10 // Arduino status LED Pin 10
 #define STATUSLED(ON_OFF) digitalWrite(STATUS_LED, ON_OFF)
 #define MIN_ELAPSED_TIME 300
+#define MIN_ENCODE_ELAPSED 5 // min delay to procces next encoder action
 
 // OLED - Declaration for a SSD1306 display connected to I2C (SDA, SCL pins)
 SSD1306AsciiAvrI2c display;
@@ -205,7 +206,7 @@ void bfoOnOff()
   // If BFO is On it becomes Off. If BFO is Off it becomes On
  
   bfoOn = !bfoOn;
-  
+
   bfoFreq = (bfoOn) ? bfoLastValue : 0;
   isBfoOnOff = true;
 
@@ -221,8 +222,8 @@ void loop()
 {
   if (bfoOn) // porcess just if BFO is on
   {
-    // Enconder action can be processed after 5 milisecounds
-    if ((millis() - elapsedTimeEncoder) > 5)
+    // Next enconder action only can be processed after MIN_ENCODE_ELAPSED (5) milisecounds
+    if ((millis() - elapsedTimeEncoder) > MIN_ENCODE_ELAPSED)
     {
       encoder_pin_a = digitalRead(ENCODER_PIN_A);
       encoder_pin_b = digitalRead(ENCODER_PIN_B);
