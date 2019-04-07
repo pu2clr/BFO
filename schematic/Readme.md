@@ -21,9 +21,13 @@ Connect Arduino __D8__ and __D9__ pins to the __Encoder__ pin __A__ and pin __B_
 
 ### Push Button Step
 
-Connect Arduino __D1/Tx__ pin to the __Step__ push button. 
+Connect Arduino __D1/Tx__ pin to the __Step__ push button (S1). 
 
 ### Reset VFO
 
-Connect Arduino __D0__ pin to the __Reset BFO__ push button.
+Connect Arduino __D0__ pin to the __Reset BFO__ push button (S2).
+
+### BFO On/OFF 
+
+Connect the Arduino pin __D7__ to the BFO On/Off push button  (S3).
 
