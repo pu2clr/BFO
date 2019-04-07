@@ -135,13 +135,17 @@ if you do not want calibrate, set CORRECTION_FACTOR to 0 as shown bellow.
 - [Arduino Interrupts](https://www.arduino.cc/reference/en/language/functions/interrupts/interrupts/)
 - [Text only Arduino Library for SSD1306 OLED displays](https://github.com/greiman/SSD1306Ascii)
 - [Si5351 Library for Arduino](https://github.com/etherkit/Si5351Arduino)
+- [Si5351 calibration](https://github.com/etherkit/Si5351Arduino#calibration)
 - [Fritzing](http://fritzing.org/home/)
+- [Biografy and Ham radio page](https://www.qrz.com/db/PU2CLR)
 
 
 ## Videos about this project
+
 - [BFO with SI5351 and Arduino test with REDSUN RP2100](https://youtu.be/AG9XZ8bdaNM)
 - [VFO and BFO with Si5351A controlled by Arduino](https://youtu.be/pFDvcIk5EAk)
 - [VFO e BFO com Si5351A e Arduino - Calibração do Si5351](https://youtu.be/BJ83uvDcfIo)
 - [VFO e BFO com o Si5351 e OLED controlado por Arduino - (Portuguese)](https://youtu.be/0sGL2KpOJH4)
+- [Homebrew 80/40m SSB/CW Rig - #7a Si5351 Calibration](https://youtu.be/fJ_3z2IAjKg).
 
 
