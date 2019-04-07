@@ -22,7 +22,7 @@
 #define I2C_ADDRESS 0x3C
 #define RST_PIN -1 // Define proper RST_PIN if required.
 
-// Change this value below  (CORRECTION_FACTOR) to 0 if you do not know the correction factor of your Si5351A.
+// Change this value bellow  (CORRECTION_FACTOR) to 0 if you do not know the correction factor of your Si5351A.
 #define CORRECTION_FACTOR 80000 // See how to calibrate your Si5351A (0 if you do not want).
 
 #define BUTTON_STEP 0   // Control the frequency increment and decrement

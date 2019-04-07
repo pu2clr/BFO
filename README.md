@@ -7,6 +7,7 @@
 1. [Schematic](https://github.com/pu2clr/BFO#this-bfo-interface)
 1. [BFO interface](https://github.com/pu2clr/BFO#bfo-interface)
 1. [Arduino pins and  Encoder, Step, Reset BFO and Turt On or Off commands](https://github.com/pu2clr/BFO#arduino-pins-and--encoder-step-reset-bfo-and-turn-on-or-off-commands)
+1. [SI5351 Calibration](https://github.com/pu2clr/BFO#si5351-calibration)
 1. [References](https://github.com/pu2clr/BFO#references)
 1. [Videos about this project](https://github.com/pu2clr/BFO#videos-about-this-project)
 
@@ -106,6 +107,19 @@ attachInterrupt(digitalPinToInterrupt(BUTTON_STEP), changeStep, RISING); // when
 attachInterrupt(digitalPinToInterrupt(BUTTON_RST), resetBfo, RISING);    // whenever the BUTTON_RST is pressed  call resetBfo
 attachInterrupt(digitalPinToInterrupt(BUTTON_ON_OFF), bfoOnOff, RISING); // whenever the BUTTON_ON_OFF is pressed  call bfoOnOff
 ```
+
+## SI5351 Calibration
+
+You might need calibrate your si5351 to get more precision during signal generation. To do that you can use the si5351_calibration.ino sketch that comes with [si5351 Library for Arduino](https://github.com/etherkit/Si5351Arduino). Click [here](https://github.com/etherkit/Si5351Arduino#calibration) to see more about si5351 calibration. You can also try watch [this Portuguese video] (https://youtu.be/BJ83uvDcfIo) that show how to calibrate the si5351. Another video about si5351 calibration can be watch [here (Homebrew 80/40m SSB/CW Rig - #7a Si5351 Calibration)](https://youtu.be/fJ_3z2IAjKg).
+
+The line code bellow shows the correction factor found during this project. 
+
+```cpp
+// Change this value bellow  (CORRECTION_FACTOR) to 0 if you do not know the correction factor of your Si5351A.
+#define CORRECTION_FACTOR 80000 // See how to calibrate your Si5351A (0 if you do not want).
+```
+
+
 
 
 ## References
