@@ -119,6 +119,11 @@ The line code bellow shows the correction factor found during this project.
 #define CORRECTION_FACTOR 80000 // See how to calibrate your Si5351A (0 if you do not want).
 ```
 
+if you do not want calibrate, set CORRECTION_FACTOR to 0 as shown bellow. 
+
+```cpp
+#define CORRECTION_FACTOR 0 
+```
 
 
 
