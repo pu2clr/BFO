@@ -2,11 +2,11 @@
 
 ## Table contents
 
-1. [Introduction]()
+1. [Introduction](https://github.com/pu2clr/BFO#introduction)
 1. [Schematic](https://github.com/pu2clr/BFO#this-bfo-interface)
 1. [This BFO interface](https://github.com/pu2clr/BFO#this-bfo-interface)
-1. [Arduino pins and  Encoder, Step, Reset BFO and Turt On or Off commands]()
-1. 
+1. [Arduino pins and  Encoder, Step, Reset BFO and Turt On or Off commands](https://github.com/pu2clr/BFO#arduino-pins-and--encoder-step-reset-bfo-and-turt-on-or-off-commands)
+
 
 
 ## Introduction
@@ -31,7 +31,7 @@ The user can control the BFO  by using tow buttons and an encoder.
 
 ## Arduino pins and  Encoder, Step, Reset BFO and Turt On or Off commands
 
-This section show some aspect of the BFO Arduino sketch](https://github.com/pu2clr/BFO/blob/master/source/si5351_bfo.ino) implementation. 
+This section show some aspect of the BFO [Arduino sketch](https://github.com/pu2clr/BFO/blob/master/source/si5351_bfo.ino) implementation. 
 
 The pins for encoder and push buttons are defined bellow. If you need to change some push button pin, you should be aware that the push buttons are connected to  pins with external interrupts support. On Atmega32u4 you can use the pins 0,1,2,3 and 7, on 328-based (Nano, Mini, Uno) you can use the pins 2 and 3.
 
