@@ -20,7 +20,14 @@ See also the similar project ["VFO and BFO with Si5351 and OLED,  controlled by 
 
 ### Using this BFO to listening to 15 meters ham radio station on USB mode
 
-![](/images/logo.png)
+![Photo One](/images/BFO_01.png)
+
+![Photo Two](/images/BFO_02.png)
+
+![Photo Three](/images/BFO_03.png)
+
+
+
 
 ## Components
 
