@@ -137,7 +137,9 @@ if you do not want calibrate, set CORRECTION_FACTOR to 0 as shown bellow.
 - [Si5351 Library for Arduino](https://github.com/etherkit/Si5351Arduino)
 - [Si5351 calibration](https://github.com/etherkit/Si5351Arduino#calibration)
 - [Fritzing](http://fritzing.org/home/)
-- [Biografy and Ham radio page](https://www.qrz.com/db/PU2CLR)
+- [My ham radio Facebook](https://www.facebook.com/PU2CLR)
+- [QRZ - Biografy and my ham radio page](https://www.qrz.com/db/PU2CLR)
+
 
 
 ## Videos about this project
