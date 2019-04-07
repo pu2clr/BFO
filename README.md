@@ -8,6 +8,7 @@
 1. [BFO interface](https://github.com/pu2clr/BFO#bfo-interface)
 1. [Arduino pins and  Encoder, Step, Reset BFO and Turt On or Off commands](https://github.com/pu2clr/BFO#arduino-pins-and--encoder-step-reset-bfo-and-turn-on-or-off-commands)
 1. [References](https://github.com/pu2clr/BFO#references)
+1. [Videos about this project](https://github.com/pu2clr/BFO#videos-about-this-project)
 
 
 ## Introduction
@@ -16,6 +17,10 @@ The Si5351 is an I2C configurable clock generator that is very appropriate for r
 
 See also the similar project ["VFO and BFO with Si5351 and OLED,  controlled by Arduino (Micro)"](https://github.com/pu2clr/VFO_BFO_OLED_ARDUINO) 
 
+
+### Using this BFO to listening to 15 meters ham radio station on USB mode
+
+![](/images/logo.png)
 
 ## Components
 
@@ -45,7 +50,7 @@ The schematic was built by using [Fritzing](http://fritzing.org/home/) Software,
 
 ## Arduino pins and  Encoder, Step, Reset BFO and Turn On or Off commands
 
-This section show some aspect of the BFO [Arduino sketch](https://github.com/pu2clr/BFO/blob/master/source/si5351_bfo.ino) implementation. 
+This section shows some aspects of the BFO [Arduino sketch](https://github.com/pu2clr/BFO/blob/master/source/si5351_bfo.ino) implementation. 
 
 The pins for encoder and push buttons are defined bellow. If you need to change some push button pin, you should be aware that the push buttons are connected to  pins with external interrupts support. On Atmega32u4 you can use the pins 0,1,2,3 and 7, on 328-based (Nano, Mini, Uno) you can use the pins 2 and 3.
 
@@ -72,7 +77,7 @@ The short code below shows the BFO frequency setup.
 
 The unit of frequency is 0.01Hz (1/100 Hz). See [Etherkit Library](https://github.com/etherkit/Si5351Arduino). 
 
-if you want to modify the frequency of BFO to 10MHz (for example), just change the lines below.
+You might need a different BFO frequency. If you want to modify the central frequency of BFO to 10MHz (for example), just change the lines below.
 
 ```cpp
 #define MAX_BFO     1100000000LU   // BFO max. frequency (11MHz)
@@ -90,7 +95,7 @@ attachInterrupt(digitalPinToInterrupt(BUTTON_ON_OFF), bfoOnOff, RISING); // when
 ```
 
 
-# References
+## References
 
 - [Arduino](https://www.arduino.cc)
 - [Arduino Micro Pinout](http://pinoutguide.com/Electronics/arduino_micro_pinout.shtml)
@@ -99,3 +104,12 @@ attachInterrupt(digitalPinToInterrupt(BUTTON_ON_OFF), bfoOnOff, RISING); // when
 - [Text only Arduino Library for SSD1306 OLED displays](https://github.com/greiman/SSD1306Ascii)
 - [Si5351 Library for Arduino](https://github.com/etherkit/Si5351Arduino)
 - [Fritzing](http://fritzing.org/home/)
+
+
+## Videos about this project
+- [BFO with SI5351 and Arduino test with REDSUN RP2100](https://youtu.be/AG9XZ8bdaNM)
+- [VFO and BFO with Si5351A controlled by Arduino](https://youtu.be/pFDvcIk5EAk)
+- [VFO e BFO com Si5351A e Arduino - Calibração do Si5351](https://youtu.be/BJ83uvDcfIo)
+- [VFO e BFO com o Si5351 e OLED controlado por Arduino - (Portuguese)](https://youtu.be/0sGL2KpOJH4)
+
+
