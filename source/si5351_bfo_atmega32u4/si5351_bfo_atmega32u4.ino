@@ -48,7 +48,7 @@ Si5351 si5351;
 // Struct for step database
 typedef struct
 {
-  char *name; // step label: 50Hz, 10Hz, 500Hz and 100KHz
+  const char *name; // step label: 50Hz, 10Hz, 500Hz and 100KHz
   long value; // Frequency value (unit 0.01Hz See documentation) to increment or decrement
 } Step;
 
@@ -90,7 +90,7 @@ void setup()
   pinMode(BUTTON_STEP, INPUT);
 
   // The sistem is alive
-  blinkLed(STATUS_LED, 100);
+  blinkLed(100);
   STATUSLED(LOW);
   // Initiating the OLED Display
   display.begin(&Adafruit128x64, I2C_ADDRESS);
@@ -122,7 +122,7 @@ void setup()
 }
 
 // Blink the STATUS LED
-void blinkLed(int pinLed, int blinkDelay)
+void blinkLed(int blinkDelay)
 {
   for (int i = 0; i < 5; i++)
   {
@@ -164,7 +164,7 @@ void changeFreq(int direction)
   if (bfoFreq > MAX_BFO || bfoFreq < MIN_BFO) // BFO goes to center if it is out of the limits
   {
     bfoFreq = CENTER_BFO;     // Go to center
-    blinkLed(STATUS_LED, 50); // Alert the user that the range is over
+    blinkLed(50); // Alert the user that the range is over
   }
   isFreqChanged = true;
 }
